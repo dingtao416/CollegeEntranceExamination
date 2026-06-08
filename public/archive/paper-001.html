@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>数学试题识别结果及答案</title>
+<style>
+  body {
+    font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #222;
+    padding: 30px;
+    max-width: 1000px;
+    margin: auto;
+  }
+  h1 {
+    text-align: center;
+    font-size: 26px;
+  }
+  h2 {
+    margin-top: 40px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 6px;
+  }
+  h3 {
+    margin-top: 28px;
+  }
+  .question {
+    margin: 22px 0;
+  }
+  .answer {
+    font-weight: bold;
+    color: #c00000;
+  }
+  .options {
+    margin-left: 2em;
+  }
+  .solution {
+    background: #f8f8f8;
+    border-left: 4px solid #999;
+    padding: 12px 18px;
+    margin-top: 10px;
+  }
+  .math {
+    font-family: "Times New Roman", serif;
+  }
+  table {
+    border-collapse: collapse;
+    margin: 12px 0;
+  }
+  td, th {
+    border: 1px solid #999;
+    padding: 6px 16px;
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>数学试题识别结果及答案</h1>
+
+<h2>一、选择题：本大题共 8 小题，每小题 5 分，共 40 分。在每小题给出的四个选项中，只有一项是符合题目要求的。</h2>
+
+<div class="question">
+  <p><strong>1.</strong> 样本数据 6，8，4，5，12 的中位数为</p>
+  <p class="options">A. 5　　B. 6　　C. 8　　D. 9</p>
+  <p class="answer">答案：B</p>
+</div>
+
+<div class="question">
+  <p><strong>2.</strong> 已知平面向量 a，b 不共线，且 2a + yb = xa - 3b，则</p>
+  <p class="options">
+    A. x = 2，y = -3<br>
+    B. x = -2，y = 3<br>
+    C. x = 2，y = 3<br>
+    D. x = -2，y = -3
+  </p>
+  <p class="answer">答案：A</p>
+</div>
+
+<div class="question">
+  <p><strong>3.</strong> 已知集合 A = {sin(7π/6)，cos(5π/3)，tan(5π/4)}，B = {√3/2，-1/2，1}，则 A ∩ B =</p>
+  <p class="options">
+    A. {-√3/2，-1/2}<br>
+    B. {-√3/2，1}<br>
+    C. {-1/2，1}<br>
+    D. {-√3/2，-1/2，1}
+  </p>
+  <p class="answer">答案：C</p>
+</div>
+
+<div class="question">
+  <p><strong>4.</strong> 曲线 y = 5x + 8lnx 在点 (1,5) 的切线方程为</p>
+  <p class="options">
+    A. y = 3x + 2<br>
+    B. y = 5x<br>
+    C. y = 8x - 3<br>
+    D. y = 13x - 8
+  </p>
+  <p class="answer">答案：D</p>
+</div>
+
+<div class="question">
+  <p><strong>5.</strong> 已知抛物线 C₁：y² = 2p₁x（p₁ &gt; 0）和 C₂：x² = 2p₂y（p₂ &gt; 0）均经过点 (4,8)，则 C₁ 的焦点与 C₂ 的焦点之间的距离为</p>
+  <p class="options">
+    A. 12　　B. 4√5　　C. 6　　D. √65/2
+  </p>
+  <p class="answer">答案：D</p>
+</div>
+
+<div class="question">
+  <p><strong>6.</strong> 已知函数 f(x) = (x + 2) / (eˣ + a) 的最大值为 1，则 a =</p>
+  <p class="options">
+    A. 1/2　　B. 1　　C. 3/2　　D. 2
+  </p>
+  <p class="answer">答案：B</p>
+</div>
+
+<div class="question">
+  <p><strong>7.</strong> 一百零八塔位于宁夏回族自治区青铜峡市，以其独特的建筑格局和深邃的历史文化闻名遐迩，该塔群共有 108 座塔，依山势自上而下排成 12 行，将第 i 行中塔的座数记为 aᵢ（i = 1,2,...,12），其中 a₁ = 1，a₂ = a₃ = 3，a₄ = a₅ = 5，且 a₆，a₇，…，a₁₂ 是一个首项为 7，公差为 2 的等差数列，将 a₁，a₂，…，a₁₂ 分为 6 组，每组 2 个数，使得每组的 2 个数之和可构成一个项数为 6 且公差为 d（d &gt; 0）的等差数列，则 d =</p>
+  <p class="options">
+    A. 2　　B. 4　　C. 6　　D. 8
+  </p>
+  <p class="answer">答案：B</p>
+</div>
+
+<div class="question">
+  <p><strong>8.</strong> 设 U = {(x₁,x₂,x₃) | xᵢ ∈ {-2,-1,1,2}, i = 1,2,3} 为空间中 64 个点构成的集合，点 P(1,1,1)，记样本空间 Ω = U \ {P}。从 Ω 中随机取一个点，定义随机变量 X 如下：对 Ω 中的每个点 A(x₁,x₂,x₃)，令 X(A) = x₁ + x₂ + x₃，则 X 的数学期望为</p>
+  <p class="options">
+    A. -1/21　　B. -1/63　　C. 0　　D. 1/7
+  </p>
+  <p class="answer">答案：A</p>
+</div>
+
+<h2>二、选择题：本大题共 3 小题，每小题 6 分，共 18 分。在每小题给出的四个选项中，有多项符合题目要求。</h2>
+
+<div class="question">
+  <p><strong>9.</strong> 设 z = 3 + 2i，则</p>
+  <p class="options">
+    A. z 的共轭复数为 3 - 2i<br>
+    B. |z| = 5<br>
+    C. z² = 5 + 12i<br>
+    D. (z + 3) / (z - i) ∈ R
+  </p>
+  <p class="answer">答案：ACD</p>
+</div>
+
+<div class="question">
+  <p><strong>10.</strong> 在空间中，A，B 为两个定点，动点 C 到直线 AB 的距离为 2，动点 D 到直线 AB 的距离为 1，二面角 C - AB - D 为 60°，则</p>
+  <p class="options">
+    A. ∠CAD ≥ 60°<br>
+    B. CD ≥ √3<br>
+    C. 当 AB ⟂ CD 时，CD ⟂ 平面 ABD<br>
+    D. 当 AB ⟂ 平面 ACD 时，AC ⟂ AD
+  </p>
+  <p class="answer">答案：BC</p>
+</div>
+
+<div class="question">
+  <p><strong>11.</strong> 已知圆 C₁：(x + 1)² + y² = 1，C₂：(x - 1)² + y² = 1，C₃：x² + (y - √3)² = 1，直线 l：y = kx + b 与 C₁，C₂，C₃ 均有两个交点，记 l 被 C₁，C₂，C₃ 截得的弦长分别为 s₁，s₂，s₃，则</p>
+  <p class="options">
+    A. k 可以取任意实数<br>
+    B. 满足 s₁ = s₂ = s₃ 的直线 l 共有 3 条<br>
+    C. 满足 s₁ + s₂ + s₃ = 3 的直线 l 多于 3 条<br>
+    D. 当 b = 0 时，s₁ + s₂ + s₃ 的最大值为 2√21 / 3
+  </p>
+  <p class="answer">答案：BCD</p>
+</div>
+
+<h2>三、填空题：本大题共 3 小题，每小题 5 分，共 15 分。</h2>
+
+<div class="question">
+  <p><strong>12.</strong> 双曲线 5x² - 6y² = 1 的离心率为 ______。</p>
+  <p class="answer">答案：√66 / 6</p>
+</div>
+
+<div class="question">
+  <p><strong>13.</strong> 已知 f(x) = 2sin(ax + θ)（a ∈ Z，0 ≤ θ &lt; 2π）是偶函数，f(x) 在区间 (0, π/2) 单调递增，则 θ = ______，f(2π/3) = ______。</p>
+  <p class="answer">答案：θ = 3π/2，f(2π/3) = 1</p>
+</div>
+
+<div class="question">
+  <p><strong>14.</strong> 设实数 aᵢ 满足：存在数列 {aₙ}，使得对于任意 n ∈ N*，均有 a₁ + a₂ + … + a₃ₙ = n² + n。且 {aₙ} 中有某连续 9 项 aₖ，aₖ₊₁，…，aₖ₊₈ 是公比为 q 的等比数列，则 q 的最大值为 ______。</p>
+  <p class="answer">答案：∛(3/2)</p>
+</div>
+
+<h2>四、解答题：本大题共 5 小题，共 77 分。</h2>
+
+<div class="question">
+  <h3>15.（13 分）</h3>
+  <p>在直三棱柱 ABC - A₁B₁C₁ 中，∠ACB = 90°，AC = BC，D，E 分别为 AB，AC₁ 的中点。</p>
+  <p>（1）证明：DE ∥ 平面 BB₁C₁C；</p>
+  <p>（2）设 CC₁ = 2，直线 DE 与平面 ACC₁A₁ 夹角为 45°，求 DE 到平面 BB₁C₁C 的距离。</p>
+
+  <p class="answer">答案：（1）DE ∥ 平面 BB₁C₁C；（2）距离为 1。</p>
+
+  <div class="solution">
+    <p><strong>参考解答：</strong></p>
+    <p>（1）取 CC₁ 中点 F，BC 中点 G，连接 EF，FG，DG。</p>
+    <p>在 △ACC₁ 中，E，F 为 AC₁，CC₁ 中点，所以 EF ∥ AC，EF = 1/2 AC。</p>
+    <p>在 △ABC 中，D，G 为 AB，BC 中点，所以 DG ∥ AC，DG = 1/2 AC。</p>
+    <p>所以 EF ∥ DG，EF = DG，四边形 EDGF 为平行四边形，所以 DE ∥ FG。</p>
+    <p>因为 FG ⊂ 平面 BB₁C₁C，所以 DE ∥ 平面 BB₁C₁C。</p>
+
+    <p>（2）取 AC 中点 H，连接 DH，EH。因为 D，H 为 AB，AC 中点，所以 DH ∥ BC。</p>
+    <p>因为直三棱柱中 CC₁ ⟂ 平面 ABC，且 ∠ACB = 90°，所以 BC ⟂ 平面 ACC₁A₁。</p>
+    <p>又 DH ∥ BC，所以 DH ⟂ 平面 ACC₁A₁。</p>
+    <p>点 D 在平面 ACC₁A₁ 的垂足为 H，直线 DE 与平面 ACC₁A₁ 所成角为 45°。</p>
+    <p>在 △ACC₁ 中，EH 为中位线，所以 EH = 1/2 CC₁ = 1。</p>
+    <p>在 Rt△DHE 中，DH = EH tan45° = 1。</p>
+    <p>所以 BC = 2DH = 2，AC = BC = 2。</p>
+    <p>因为 DE ∥ 平面 BB₁C₁C，所以直线 DE 到平面 BB₁C₁C 的距离等于点 D 到平面 BB₁C₁C 的距离。</p>
+    <p>又 DG = 1/2 AC = 1，且 DG ⟂ 平面 BB₁C₁C，所以距离为 1。</p>
+  </div>
+</div>
+
+<div class="question">
+  <h3>16.（15 分）</h3>
+  <p>在 △ABC 中，AB = 3，BC = 2√3，cosB = √3 / 3。</p>
+  <p>（1）求 cosA；</p>
+  <p>（2）设 D，E 两点满足：D 在 BA 的延长线上，DE ∥ BC，AE ⟂ AC。若 DE = √6，求 CE。</p>
+
+  <p class="answer">答案：（1）cosA = 1/3；（2）CE = 3√5。</p>
+
+  <div class="solution">
+    <p><strong>参考解答：</strong></p>
+    <p>（1）由余弦定理：</p>
+    <p>AC² = AB² + BC² - 2AB·BC·cosB</p>
+    <p>= 9 + 12 - 2 × 3 × 2√3 × √3/3 = 9。</p>
+    <p>所以 AC = 3。</p>
+    <p>cosA = (AB² + AC² - BC²) / (2AB·AC) = (9 + 9 - 12) / (2 × 3 × 3) = 1/3。</p>
+
+    <p>（2）设 AD = -λAB（λ &gt; 0），DE = μBC。</p>
+    <p>因为 DE ∥ BC，所以 AE = AD + DE = -λAB + μ(AC - AB) = -(λ + μ)AB + μAC。</p>
+    <p>又 AE ⟂ AC，所以 AE·AC = 0。</p>
+    <p>即：-(λ + μ)AB·AC + μAC² = 0。</p>
+    <p>因为 AB·AC = 3 × 3 × 1/3 = 3，AC² = 9，所以 -3(λ + μ) + 9μ = 0，得 λ = 2μ。</p>
+    <p>又 DE = μBC = μ·2√3 = √6，所以 μ = √2 / 2。</p>
+    <p>代入计算可得 CE² = 45，所以 CE = 3√5。</p>
+  </div>
+</div>
+
+<div class="question">
+  <h3>17.（15 分）</h3>
+  <p>设整数 N ≥ 2。某同学用一个球进行投篮练习，至多投篮 N 次，当且仅当投中 1 次时或 N 次均未投中时，停止练习。设该同学每次投中的概率为 p（0 &lt; p &lt; 1），各次投中与否相互独立。记 X 为停止练习时该同学的投篮次数。</p>
+  <p>（1）当 N = 4，p = 1/3 时，求 X 的分布列；</p>
+  <p>（2）设 k，m 均为自然数。</p>
+  <p>（i）当 k ≤ N - 1 时，求 P(X &gt; k)；</p>
+  <p>（ii）当 k + m ≤ N - 1 时，证明：P(X &gt; k + m | X &gt; k) = P(X &gt; m)。</p>
+
+  <p class="answer">答案：（1）见分布列；（2）（i）P(X &gt; k) = (1 - p)ᵏ；（ii）等式成立。</p>
+
+  <div class="solution">
+    <p><strong>参考解答：</strong></p>
+    <p>（1）X = 1，2，3，4。</p>
+    <p>P(X = 1) = p = 1/3。</p>
+    <p>P(X = 2) = (1 - p)p = 2/3 × 1/3 = 2/9。</p>
+    <p>P(X = 3) = (1 - p)²p = (2/3)² × 1/3 = 4/27。</p>
+    <p>P(X = 4) = (1 - p)³p + (1 - p)⁴ = (1 - p)³ = (2/3)³ = 8/27。</p>
+
+    <table>
+      <tr>
+        <th>X</th>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th>P</th>
+        <td>1/3</td>
+        <td>2/9</td>
+        <td>4/27</td>
+        <td>8/27</td>
+      </tr>
+    </table>
+
+    <p>（2）（i）X &gt; k 等价于前 k 次投篮均未投中，所以 P(X &gt; k) = (1 - p)ᵏ。</p>
+    <p>（ii）因为 {X &gt; k + m} ⊂ {X &gt; k}，所以</p>
+    <p>P(X &gt; k + m | X &gt; k) = P(X &gt; k + m) / P(X &gt; k)。</p>
+    <p>由（i）得：</p>
+    <p>P(X &gt; k + m | X &gt; k) = (1 - p)ᵏ⁺ᵐ / (1 - p)ᵏ = (1 - p)ᵐ = P(X &gt; m)。</p>
+  </div>
+</div>
+
+<div class="question">
+  <h3>18.（17 分）</h3>
+  <p>已知椭圆 C：x²/a² + y²/b² = 1（a &gt; b &gt; 0）的左焦点为 F(-1,0)，离心率为 1/2。</p>
+  <p>（1）求 C 的方程；</p>
+  <p>（2）设 O 为坐标原点，过 F 且斜率大于 0 的动直线 l 与 C 交于 P，Q 两点，其中 Q 在第二象限内，直线 PO 与 C 的另一交点为 R。</p>
+  <p>（i）若 △PQR 面积是 △PFO 的面积的 3 倍，求 l 的方程；</p>
+  <p>（ii）求 tan∠PQR 的最小值。</p>
+
+  <p class="answer">答案：（1）x²/4 + y²/3 = 1；（2）（i）√5x - 2y + √5 = 0；（ii）最小值为 4√3。</p>
+
+  <div class="solution">
+    <p><strong>参考解答：</strong></p>
+    <p>（1）由题意得 c = 1，e = c/a = 1/2，所以 a = 2。</p>
+    <p>又 b² = a² - c² = 4 - 1 = 3。</p>
+    <p>所以椭圆方程为：x²/4 + y²/3 = 1。</p>
+
+    <p>（2）设 l：y = k(x + 1)，k &gt; 0，P(x₁,y₁)，Q(x₂,y₂)。</p>
+    <p>联立 y = k(x + 1) 与 x²/4 + y²/3 = 1，消去 y 得：</p>
+    <p>(3 + 4k²)x² + 8k²x + 4k² - 12 = 0。</p>
+    <p>由韦达定理：</p>
+    <p>x₁ + x₂ = -8k² / (3 + 4k²)，x₁x₂ = (4k² - 12) / (3 + 4k²)。</p>
+    <p>由对称性知 R(-x₁,-y₁)。</p>
+
+    <p>（i）由面积关系可得 y₁ = -2y₂。</p>
+    <p>又 y = k(x + 1)，所以 k(x₁ + 1) = -2k(x₂ + 1)，即 x₁ = -2x₂ - 3。</p>
+    <p>结合韦达定理可得 k = √5 / 2。</p>
+    <p>故直线 l 的方程为：</p>
+    <p>y = √5/2 (x + 1)，即 √5x - 2y + √5 = 0。</p>
+
+    <p>（ii）设直线 l 的斜率为 k，则 k<sub>PO</sub> = k。</p>
+    <p>计算得 k<sub>QR</sub> = -3 / 4k。</p>
+    <p>所以 tan∠PQR = 4(k + 3/4k)。</p>
+    <p>因为 k &gt; 0，由基本不等式：</p>
+    <p>tan∠PQR ≥ 4√3。</p>
+    <p>当 k = √3 / 2 时取等号。</p>
+    <p>故 tan∠PQR 的最小值为 4√3。</p>
+  </div>
+</div>
+
+<div class="question">
+  <h3>19.（17 分）</h3>
+  <p>已知函数 f(x) 的定义域为 R，且当 x &lt; 0 时，f(x) = 2ˣ。对于任意 x₀ ∈ R，定义集合 D(x₀) = {d ∈ R | f(x₀ + d) &gt; f(x₀)}。</p>
+  <p>（1）若当 x ≥ 0 时，f(x) = 1 - x，求 D(-1)；</p>
+  <p>（2）若 f(x) 是奇函数，f(x₁) ≤ f(x₂)，且 x₁x₂ ≠ 0，证明：D(x₂) ⊂ D(x₁)；</p>
+  <p>（3）设 f(x) 满足：① 若 f(x₁) ≤ f(x₂)，则 D(x₂) ⊂ D(x₁)；② 当 0 &lt; x &lt; 1 时，f(x) &lt; f(0)。</p>
+  <p>（i）证明：f(0) ≥ 1；</p>
+  <p>（ii）证明：f(x) 在区间 [0,+∞) 上单调递增。</p>
+
+  <p class="answer">答案：（1）D(-1) = {d ∈ R | 0 &lt; d &lt; 3/2}；（2）结论成立；（3）（i）f(0) ≥ 1；（ii）f(x) 在 [0,+∞) 上单调递增。</p>
+
+  <div class="solution">
+    <p><strong>参考解答：</strong></p>
+
+    <p>（1）f(-1) = 2⁻¹ = 1/2。</p>
+    <p>D(-1) = {d ∈ R | f(-1 + d) &gt; 1/2}。</p>
+    <p>令 t = -1 + d，解 f(t) &gt; 1/2。</p>
+    <p>若 t &lt; 0，则 f(t) = 2ᵗ，2ᵗ &gt; 1/2 = 2⁻¹，所以 t &gt; -1，即 -1 &lt; t &lt; 0。</p>
+    <p>若 t ≥ 0，则 f(t) = 1 - t，1 - t &gt; 1/2，所以 0 ≤ t &lt; 1/2。</p>
+    <p>综上，t ∈ (-1, 1/2)。</p>
+    <p>代入 t = -1 + d，得 0 &lt; d &lt; 3/2。</p>
+    <p>故 D(-1) = {d ∈ R | 0 &lt; d &lt; 3/2}。</p>
+
+    <p>（2）因为 f(x) 是奇函数，所以：</p>
+    <p>当 x &lt; 0 时，f(x) = 2ˣ；当 x = 0 时，f(x) = 0；当 x &gt; 0 时，f(x) = -2⁻ˣ。</p>
+    <p>即：</p>
+    <p>f(x) = 2ˣ，x &lt; 0；f(x) = 0，x = 0；f(x) = -2⁻ˣ，x &gt; 0。</p>
+
+    <p>当 x &lt; 0 时，D(x) = (0, -x)。</p>
+    <p>当 x &gt; 0 时，D(x) = (-∞, -x] ∪ (0, +∞)。</p>
+
+    <p>分类讨论：</p>
+    <p>① 若 x₁ &lt; 0，x₂ &lt; 0，由 f(x₁) ≤ f(x₂) 得 x₁ ≤ x₂ &lt; 0，所以 D(x₂) ⊂ D(x₁)。</p>
+    <p>② 若 x₁ &gt; 0，x₂ &gt; 0，由 f(x₁) ≤ f(x₂) 得 0 &lt; x₁ ≤ x₂，所以 D(x₂) ⊂ D(x₁)。</p>
+    <p>③ 若 x₁ &gt; 0，x₂ &lt; 0，则 f(x₁) &lt; 0 &lt; f(x₂)，满足 f(x₁) ≤ f(x₂)，此时 D(x₂) = (0, -x₂) ⊂ (0,+∞) ⊂ D(x₁)。</p>
+    <p>④ 若 x₁ &lt; 0，x₂ &gt; 0，则 f(x₁) &gt; 0 &gt; f(x₂)，与 f(x₁) ≤ f(x₂) 矛盾。</p>
+    <p>综上，D(x₂) ⊂ D(x₁)。</p>
+
+    <p>（3）（i）假设 f(0) &lt; 1。</p>
+    <p>若 f(0) ≤ 0，取 x₁ = -1/2，则 f(x₁) = 2⁻¹ᐟ² &gt; 0，所以 f(0) &lt; f(x₁)。由条件①知 D(0) ⊃ D(x₁)。</p>
+    <p>取 d = 1/4，则 x₁ + d = -1/4 &lt; 0，f(x₁ + d) = 2⁻¹ᐟ⁴ &gt; 2⁻¹ᐟ² = f(x₁)，所以 d ∈ D(x₁)。</p>
+    <p>于是 d ∈ D(0)，即 f(d) &gt; f(0)。</p>
+    <p>但 d = 1/4 ∈ (0,1)，由条件②知 f(d) &lt; f(0)，矛盾。</p>
+
+    <p>若 0 &lt; f(0) &lt; 1，令 x₀ = log₂ f(0)，则 x₀ &lt; 0，且 f(x₀) = f(0)。</p>
+    <p>由条件①可得 D(x₀) = D(0)。</p>
+    <p>取 d₀ = min{-x₀/2, 1/2}，则 0 &lt; d₀ ≤ 1/2 &lt; 1。</p>
+    <p>由条件②知 f(d₀) &lt; f(0)，所以 d₀ ∉ D(0)。</p>
+    <p>又 x₀ + d₀ ≤ x₀/2 &lt; 0，因此 f(x₀ + d₀) = 2ˣ⁰⁺ᵈ⁰ &gt; 2ˣ⁰ = f(x₀)，所以 d₀ ∈ D(x₀)，矛盾。</p>
+    <p>综上，假设不成立，所以 f(0) ≥ 1。</p>
+
+    <p>（ii）先证：当 x &gt; 0 时，f(x) ≤ 0。</p>
+    <p>若 x ∈ (0,1)，假设 f(x) &gt; 0。取 c &lt; 0，使得 f(c) = 2ᶜ &lt; f(x)。</p>
+    <p>由条件②知 f(x) &lt; f(0)，所以 f[x + (-x)] = f(0) &gt; f(x)，即 -x ∈ D(x)。</p>
+    <p>又由条件①及 f(c) &lt; f(x) 得 D(c) ⊃ D(x)，所以 -x ∈ D(c)。</p>
+    <p>于是 f(c - x) &gt; f(c)。</p>
+    <p>但 c - x &lt; c &lt; 0，而当 x &lt; 0 时 f(x) = 2ˣ 单调递增，所以 f(c - x) &lt; f(c)，矛盾。</p>
+    <p>所以对任意 x ∈ (0,1)，f(x) ≤ 0。</p>
+
+    <p>若 x ≥ 1，假设 f(x) &gt; 0。取 b &lt; 0，使得 f(b) = 2ᵇ &lt; f(x)。</p>
+    <p>由 f[b + (x - b)] = f(x) &gt; f(b)，知 x - b ∈ D(b)。</p>
+    <p>令 b' = -1/2(x - b)。因为 x ≥ 1，b &lt; 0，所以 x - b &gt; 1，b' &lt; -1/2 &lt; 0。</p>
+    <p>可推出与已得的 0 &lt; t &lt; 1 时 f(t) ≤ 0 矛盾。</p>
+    <p>故对任意 x &gt; 0，f(x) ≤ 0。</p>
+
+    <p>最后取 0 &lt; x &lt; y。</p>
+    <p>因为 y - x &gt; 0，所以 -(y - x) - 1 &lt; -1 &lt; 0。</p>
+    <p>于是 f[-(y - x) - 1] = 2⁻⁽ʸ⁻ˣ⁾⁻¹ &gt; 0。</p>
+    <p>又 x &gt; 0，所以 f(x) ≤ 0，故 f(x) &lt; f[-(y - x) - 1]。</p>
+    <p>由条件①知 D(x) ⊃ D[-(y - x) - 1]。</p>
+    <p>因为 f[-(y - x) - 1 + (y - x)] = f(-1) &gt; f[-(y - x) - 1]，所以 y - x ∈ D[-(y - x) - 1]。</p>
+    <p>因此 y - x ∈ D(x)，于是 f[x + (y - x)] &gt; f(x)，即 f(y) &gt; f(x)。</p>
+    <p>所以 f(x) 在区间 [0,+∞) 上单调递增。</p>
+  </div>
+</div>
+
+</body>
+</html>

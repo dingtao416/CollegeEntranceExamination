@@ -1,0 +1,21 @@
+{
+  "name": "college-entrance-examination-archive",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run sync:papers && vite",
+    "build": "npm run sync:papers && vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "sync:papers": "node ./scripts/sync-papers.mjs"
+  },
+  "dependencies": {
+    "vue": "^3.5.35"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.7",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vue-tsc": "^3.3.3"
+  }
+}
