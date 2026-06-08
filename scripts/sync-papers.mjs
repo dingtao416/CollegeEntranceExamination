@@ -38,6 +38,22 @@ function escapeText(value) {
   return value.replaceAll('\\', '\\\\').replaceAll("'", "\\'")
 }
 
+function normalizeVersionLabel(value) {
+  const numberMap = {
+    1: '一',
+    2: '二',
+    3: '三',
+    4: '四',
+    5: '五',
+    6: '六',
+    7: '七',
+    8: '八',
+    9: '九',
+  }
+
+  return value.replace(/^全国([1-9])卷$/, (_, number) => `全国${numberMap[number]}卷`)
+}
+
 async function generate() {
   await mkdir(path.dirname(outputFile), { recursive: true })
   await rm(archiveRoot, { recursive: true, force: true })
@@ -60,7 +76,8 @@ async function generate() {
     const relativePath = toPosix(path.relative(sourceRoot, filePath))
     const segments = relativePath.split('/')
     const subject = path.basename(filePath, '.html')
-    const version = segments.length > 1 ? segments[segments.length - 2] : '未分类'
+    const version =
+      segments.length > 1 ? normalizeVersionLabel(segments[segments.length - 2]) : '未分类'
     const collection = segments.slice(0, -1).join(' / ') || '未分类'
     const fileName = `paper-${String(index + 1).padStart(3, '0')}.html`
     const archiveUrl = `/archive/${fileName}`

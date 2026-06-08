@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gaokao Chinese Essay"
+  short_description: "Write high-scoring Chinese gaokao essays"
+  default_prompt: "Use $gaokao-chinese-essay to draft a high-scoring Chinese gaokao-style essay from this prompt."
