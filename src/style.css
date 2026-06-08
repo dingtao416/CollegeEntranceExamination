@@ -338,11 +338,17 @@ code {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  padding: 20px;
+  padding: 12px;
   border: 0;
   background:
     radial-gradient(circle at top, rgba(159, 42, 27, 0.18), transparent 22%),
     linear-gradient(180deg, #1d1613 0%, #2a1f19 100%);
+}
+
+.reader-surface:fullscreen .reader-header,
+.reader-surface:fullscreen .reader-strip,
+.reader-surface:fullscreen .reader-stage-head {
+  display: none;
 }
 
 .reader-surface:fullscreen .reader-header,
@@ -387,7 +393,8 @@ code {
   flex: 1 1 auto;
   flex-direction: column;
   min-height: 0;
-  padding: 14px;
+  margin-top: 0;
+  padding: 0;
   border-color: rgba(255, 255, 255, 0.08);
   background:
     radial-gradient(circle at top, rgba(255, 245, 236, 0.08), transparent 24%),
@@ -398,6 +405,7 @@ code {
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
+  height: 100%;
   background:
     linear-gradient(180deg, rgba(96, 70, 58, 0.25), rgba(28, 20, 16, 0.08)),
     linear-gradient(180deg, rgba(241, 232, 214, 0.92), rgba(253, 248, 240, 0.98));
@@ -495,7 +503,7 @@ a:focus-visible {
   }
 
   .reader-surface:fullscreen {
-    padding: 14px;
+    padding: 8px;
   }
 }
 

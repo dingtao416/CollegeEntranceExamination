@@ -486,7 +486,6 @@ function applyReaderTheme() {
           <div class="reader-heading">
             <p class="eyebrow">试卷阅读</p>
             <h2>{{ selectedPaper.version }} / {{ selectedPaper.subject }}</h2>
-            <p class="reader-path">{{ selectedPaper.relativePath }}</p>
           </div>
 
           <div class="reader-tools">
