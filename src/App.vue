@@ -19,6 +19,10 @@ const activePaperId = ref(paperEntries[0]?.id ?? '')
 const readerFrame = ref<HTMLIFrameElement | null>(null)
 const readerSurface = ref<HTMLElement | null>(null)
 const isImmersive = ref(false)
+const isFilterOpen = ref(false)
+const filterDropdownRef = ref<HTMLElement | null>(null)
+const iframeHeight = ref('auto')
+const showBackToTop = ref(false)
 
 const versionOptions = computed(() => [
   allVersionsLabel,
@@ -44,6 +48,13 @@ const filteredPapers = computed(() =>
     return matchesVersion && matchesSubject
   }),
 )
+
+const filterSummary = computed(() => {
+  const parts = []
+  if (activeVersion.value !== allVersionsLabel) parts.push(activeVersion.value)
+  if (activeSubject.value !== allSubjectsLabel) parts.push(activeSubject.value)
+  return parts.length > 0 ? parts.join(' · ') : '全部试卷'
+})
 
 const selectedPaper = computed(
   () => filteredPapers.value.find((paper) => paper.id === activePaperId.value) ?? null,
@@ -86,6 +97,7 @@ watch(
 )
 
 watch(selectedPaper, async () => {
+  iframeHeight.value = 'auto' // Reset height when switching papers
   await nextTick()
   applyReaderTheme()
 })
@@ -100,17 +112,50 @@ watchEffect(() => {
 
 watch(isImmersive, (active) => {
   document.body.classList.toggle('reader-immersive', active)
+  updateIframeScrollMode(active)
 })
 
 onMounted(() => {
   applyReaderTheme()
   document.addEventListener('fullscreenchange', syncImmersiveState)
+  document.addEventListener('click', handleOutsideClick)
+  window.addEventListener('scroll', handleScroll)
 })
 
 onBeforeUnmount(() => {
   document.removeEventListener('fullscreenchange', syncImmersiveState)
+  document.removeEventListener('click', handleOutsideClick)
+  window.removeEventListener('scroll', handleScroll)
   document.body.classList.remove('reader-immersive')
 })
+
+function toggleFilter() {
+  isFilterOpen.value = !isFilterOpen.value
+}
+
+function handleOutsideClick(event: MouseEvent) {
+  if (filterDropdownRef.value && !filterDropdownRef.value.contains(event.target as Node)) {
+    isFilterOpen.value = false
+  }
+}
+
+function handleScroll() {
+  showBackToTop.value = window.scrollY > 300
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+function selectVersion(version: string) {
+  activeVersion.value = version
+  isFilterOpen.value = false
+}
+
+function selectSubject(subject: string) {
+  activeSubject.value = subject
+  isFilterOpen.value = false
+}
 
 function selectPaper(paperId: string) {
   activePaperId.value = paperId
@@ -149,6 +194,46 @@ async function toggleImmersiveMode() {
 
 function syncImmersiveState() {
   isImmersive.value = document.fullscreenElement === readerSurface.value
+}
+
+function adjustIframeHeight() {
+  const frame = readerFrame.value
+  if (!frame) return
+
+  try {
+    const doc = frame.contentDocument || frame.contentWindow?.document
+    if (doc) {
+      const height = doc.documentElement.scrollHeight || doc.body.scrollHeight
+      iframeHeight.value = `${height + 20}px`
+    }
+  } catch {
+    // Cross-origin fallback
+    iframeHeight.value = 'auto'
+  }
+}
+
+function updateIframeScrollMode(immersive: boolean) {
+  const frame = readerFrame.value
+  if (!frame) return
+
+  try {
+    const doc = frame.contentDocument || frame.contentWindow?.document
+    if (doc) {
+      const overflow = immersive ? 'auto' : 'hidden'
+      doc.documentElement.style.overflow = overflow
+      doc.body.style.overflow = overflow
+
+      if (immersive) {
+        // Reset height to allow iframe internal scrolling
+        iframeHeight.value = '100%'
+      } else {
+        // Recalculate height for page-level scrolling
+        adjustIframeHeight()
+      }
+    }
+  } catch {
+    // Cross-origin fallback
+  }
 }
 
 function normalizeText(value: string) {
@@ -281,19 +366,30 @@ function applyReaderTheme() {
     html {
       scroll-behavior: smooth;
       background: #eadfca;
+      overflow: hidden;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
     }
 
     body {
       position: relative;
       margin: 0 auto !important;
       max-width: 1100px !important;
-      min-height: 100vh;
       padding: 72px clamp(20px, 3.5vw, 72px) 120px !important;
       background:
         radial-gradient(circle at top left, rgba(167, 49, 33, 0.08), transparent 34%),
         linear-gradient(180deg, #fdf8ef 0%, #f5eddf 100%) !important;
       color: #1f1814 !important;
       font: 400 17px/1.95 "Noto Sans SC", "Microsoft YaHei", sans-serif !important;
+      overflow: hidden;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
     }
 
     body::before {
@@ -433,61 +529,70 @@ function applyReaderTheme() {
   `
 
   enhanceSolutionLayout(frameDocument)
+
+  // Adjust iframe height after content loads
+  setTimeout(adjustIframeHeight, 100)
 }
 </script>
 
 <template>
   <div class="page-shell">
     <header class="topbar">
-      <div>
+      <div class="topbar-left">
         <p class="eyebrow">CEE Archive</p>
         <h1>高考试卷档案馆</h1>
+        <p class="topbar-meta">共 {{ paperEntries.length }} 份试卷</p>
       </div>
-      <p class="topbar-meta">共 {{ paperEntries.length }} 份试卷</p>
+
+      <div v-if="paperEntries.length > 0" ref="filterDropdownRef" class="filter-dropdown-wrapper">
+        <button type="button" class="filter-trigger" @click="toggleFilter">
+          <span class="filter-trigger-label">{{ filterSummary }}</span>
+          <svg class="filter-trigger-arrow" :class="{ open: isFilterOpen }" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <Transition name="dropdown">
+          <div v-if="isFilterOpen" class="filter-panel">
+            <div class="filter-section">
+              <span class="filter-section-label">卷别</span>
+              <div class="filter-options">
+                <button
+                  v-for="version in versionOptions"
+                  :key="version"
+                  type="button"
+                  class="filter-option"
+                  :class="{ active: activeVersion === version }"
+                  @click="selectVersion(version)"
+                >
+                  {{ version }}
+                </button>
+              </div>
+            </div>
+
+            <div class="filter-section">
+              <span class="filter-section-label">学科</span>
+              <div class="filter-options">
+                <button
+                  v-for="subject in subjectOptions"
+                  :key="subject"
+                  type="button"
+                  class="filter-option"
+                  :class="{ active: activeSubject === subject }"
+                  @click="selectSubject(subject)"
+                >
+                  {{ subject }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </Transition>
+      </div>
     </header>
-
-    <section v-if="paperEntries.length > 0" class="filter-dock">
-      <div class="filter-row">
-        <span class="filter-label">卷别</span>
-        <div class="tab-row">
-          <button
-            v-for="version in versionOptions"
-            :key="version"
-            type="button"
-            class="filter-tab"
-            :class="{ active: activeVersion === version }"
-            @click="activeVersion = version"
-          >
-            {{ version }}
-          </button>
-        </div>
-      </div>
-
-      <div class="filter-row">
-        <span class="filter-label">学科</span>
-        <div class="tab-row">
-          <button
-            v-for="subject in subjectOptions"
-            :key="subject"
-            type="button"
-            class="filter-tab"
-            :class="{ active: activeSubject === subject }"
-            @click="activeSubject = subject"
-          >
-            {{ subject }}
-          </button>
-        </div>
-      </div>
-    </section>
 
     <main v-if="paperEntries.length > 0" class="reader-layout">
       <section v-if="selectedPaper" ref="readerSurface" class="reader-surface">
         <header class="reader-header">
-          <div class="reader-heading">
-            <p class="eyebrow">试卷阅读</p>
-            <h2>{{ selectedPaper.version }} / {{ selectedPaper.subject }}</h2>
-          </div>
-
           <div class="reader-tools">
             <button
               type="button"
@@ -519,27 +624,6 @@ function applyReaderTheme() {
           </div>
         </header>
 
-        <div v-if="filteredPapers.length > 1" class="reader-strip">
-          <div class="reader-strip-meta">
-            <span>当前筛选</span>
-            <strong>{{ filteredPapers.length }} 份</strong>
-          </div>
-
-          <div class="paper-row">
-            <button
-              v-for="paper in filteredPapers"
-              :key="paper.id"
-              type="button"
-              class="paper-pill"
-              :class="{ active: selectedPaper.id === paper.id }"
-              @click="selectPaper(paper.id)"
-            >
-              <span>{{ paper.subject }}</span>
-              <small>{{ paper.version }}</small>
-            </button>
-          </div>
-        </div>
-
         <div class="reader-stage">
           <div class="reader-stage-head">
             <span>{{ selectedPaper.subject }}</span>
@@ -554,6 +638,7 @@ function applyReaderTheme() {
                 :key="selectedPaper.id"
                 ref="readerFrame"
                 class="reader-frame"
+                :style="{ height: iframeHeight }"
                 :src="selectedPaper.archiveUrl"
                 :title="`${selectedPaper.version} ${selectedPaper.subject}`"
                 @load="applyReaderTheme"
@@ -561,6 +646,22 @@ function applyReaderTheme() {
             </Transition>
           </div>
         </div>
+
+        <!-- Immersive mode exit button (visible in fullscreen) -->
+        <Transition name="fade">
+          <button
+            v-if="isImmersive"
+            type="button"
+            class="immersive-exit-btn"
+            @click="toggleImmersiveMode"
+            title="退出沉浸模式"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>退出沉浸</span>
+          </button>
+        </Transition>
       </section>
 
       <section v-else class="empty-panel">
@@ -576,5 +677,19 @@ function applyReaderTheme() {
         <code>PAPER_SOURCE_DIR</code> 后运行 <code>npm run sync:papers</code>。
       </p>
     </section>
+
+    <Transition name="fade">
+      <button
+        v-if="showBackToTop"
+        type="button"
+        class="back-to-top"
+        @click="scrollToTop"
+        title="返回顶部"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </Transition>
   </div>
 </template>
